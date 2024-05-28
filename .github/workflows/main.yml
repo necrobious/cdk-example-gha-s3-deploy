@@ -1,0 +1,23 @@
+# NOTE: secrets are not required, using here only because this is a public repository
+name: Deploy a static folder to AWS S3
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Configure AWS Credentials via GitHub OIDC Idp
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.EXAMPLE_ROLE_TO_ASSUME }} # arn:aws:iam::111122223333:role/ExampleGhaS3DeployStack-ExampleGhaS3DeployRole
+          aws-region: us-west-2
+
+      - name: Deploy static site to S3 bucket
+        run: aws s3 sync ./static ${{ secrets.EXAMPLE_BUCKET_NAME }}  --delete # s3://<bucket-name>

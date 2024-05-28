@@ -1,8 +1,16 @@
-# Welcome to your CDK TypeScript project
+# Example S3 deployment via a GitHub Action, using the GitHub OIDC Identity Provider 
 
-This is a blank project for CDK development with TypeScript.
+This projects defines the folloing via AWS CDK
+ * An S3 Bucket to host the concentents of the `static` folder within this repository.
+ * A cloudfront distribution to publish the the contents of the S3 bucket origin publicly
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Additionally, this project defines a GitHub Action responsible for publishing the contents
+of this repository's `static` folder to the origin S3 bucket, using AWS credentials aquired
+using the `aws-actions/configure-aws-credentials@v1` GitHub Action configured to use the
+GitHub Identity Provider in AWS IAM.
+
+NOTE: This example does nothing you couldnt already do via GitHub Pages. The intention it to
+illustrate the use of credentialess access to AWS resources via a GitHub action.
 
 ## Useful commands
 
