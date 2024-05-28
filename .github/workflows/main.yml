@@ -17,7 +17,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.EXAMPLE_ROLE_TO_ASSUME }} # arn:aws:iam::111122223333:role/ExampleGhaS3DeployStack-ExampleGhaS3DeployRole
-          aws-region: us-west-2
+          aws-region: us-east-1
 
       - name: Deploy static site to S3 bucket
         run: aws s3 sync ./static ${{ secrets.EXAMPLE_BUCKET_NAME }}  --delete # s3://<bucket-name>
